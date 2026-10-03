@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -22,7 +21,7 @@
 
 </head>
 
-<body class="bg-gray-50 text-gray-800 min-h-screen">
+<body class="bg-gradient-to-br from-blue-50 via-blue-100 to-indigo-200 text-gray-800 min-h-screen">
 
 <div class="max-w-7xl mx-auto p-4">
 
@@ -32,149 +31,164 @@
 
   <div class="flex flex-col lg:flex-row gap-4">
 
-```
-<!-- LEFT SIDEBAR -->
-<div class="w-full lg:w-64 flex-shrink-0 space-y-4">
+    <!-- LEFT SIDEBAR -->
+    <div class="w-full lg:w-64 flex-shrink-0 space-y-4">
 
-  <div class="bg-white rounded-2xl shadow-sm p-4 flex items-center gap-3">
-    <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-semibold">
-      👤
+      <div class="bg-white rounded-2xl shadow-sm p-4 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-semibold">
+          👤
+        </div>
+
+        <div>
+          <div class="font-medium text-sm">Student</div>
+          <div class="text-xs text-gray-400">Fresher</div>
+        </div>
+      </div>
+
+      <!-- ORANGE JOB ROLE SECTION -->
+      <div class="bg-gradient-to-b from-orange-50 to-orange-100 rounded-2xl shadow-sm p-4 max-h-[460px] overflow-y-auto">
+
+        <div class="text-xs font-semibold text-orange-600 uppercase mb-2">
+          Job Role
+        </div>
+
+        <div id="roleList" class="flex flex-col gap-3"></div>
+
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-sm p-4 space-y-2">
+
+        <div class="text-sm text-gray-600 cursor-default">
+          ⚙️ Settings
+        </div>
+
+        <div
+          class="text-sm text-gray-600 cursor-pointer hover:text-indigo-600"
+          onclick="document.getElementById('faqSection').scrollIntoView({behavior:'smooth'})">
+          ❓ Help / FAQ
+        </div>
+
+      </div>
+
     </div>
 
-    <div>
-      <div class="font-medium text-sm">Student</div>
-      <div class="text-xs text-gray-400">Fresher</div>
+
+    <!-- CENTER -->
+    <div class="flex-1 space-y-4">
+
+      <div id="questionsPanel" class="bg-white rounded-2xl shadow-sm p-4 min-h-[200px]">
+
+        <div class="text-gray-400 text-sm text-center py-10">
+          Pick a job role and an interview round to see questions.
+        </div>
+
+      </div>
+
+
+      <div id="answerSection" class="bg-white rounded-2xl shadow-sm p-4 space-y-3 hidden">
+
+        <div id="selectedQuestion"
+             class="heading font-semibold text-gray-800 whitespace-pre-wrap">
+        </div>
+
+        <textarea
+          id="answerInput"
+          rows="4"
+          placeholder="Type your answer here..."
+          class="w-full bg-gray-100 rounded-xl p-3 text-sm focus:outline-none resize-none">
+        </textarea>
+
+        <button
+          onclick="submitAnswer()"
+          class="w-full py-3 rounded-full bg-indigo-600 text-white font-medium text-sm hover:bg-indigo-700 transition">
+          Submit Answer
+        </button>
+
+        <div id="feedbackBox" class="bg-green-50 rounded-xl p-3 hidden"></div>
+
+      </div>
+
+
+      <div class="bg-white rounded-2xl shadow-sm p-4">
+
+        <div id="scoreBox" class="font-semibold text-sm text-gray-700">
+          Score: 0 correct / 0 attempted
+        </div>
+
+      </div>
+
+
+      <div id="faqSection" class="bg-white rounded-2xl shadow-sm p-4 space-y-2">
+
+        <h2 class="heading text-lg font-semibold mb-2">
+          Frequently Asked Interview Questions
+        </h2>
+
+        <details class="bg-gray-50 rounded-xl p-3">
+
+          <summary class="cursor-pointer font-medium text-sm">
+            Tell me about yourself.
+          </summary>
+
+          <p class="text-sm text-gray-600 mt-2">
+            Give a short summary of your education, key skills, and what you're looking for in this role. Keep it under 1 minute.
+          </p>
+
+        </details>
+
+
+        <details class="bg-gray-50 rounded-xl p-3">
+
+          <summary class="cursor-pointer font-medium text-sm">
+            What are your strengths and weaknesses?
+          </summary>
+
+          <p class="text-sm text-gray-600 mt-2">
+            Pick a real strength relevant to the job, and a genuine weakness you're actively improving.
+          </p>
+
+        </details>
+
+
+        <details class="bg-gray-50 rounded-xl p-3">
+
+          <summary class="cursor-pointer font-medium text-sm">
+            Why should we hire you?
+          </summary>
+
+          <p class="text-sm text-gray-600 mt-2">
+            Connect your skills directly to what the role needs. Be specific, not generic.
+          </p>
+
+        </details>
+
+      </div>
+
     </div>
-  </div>
 
-  <div class="bg-gradient-to-b from-orange-50 to-orange-100 rounded-2xl shadow-sm p-4 max-h-[460px] overflow-y-auto">
-    <div class="text-xs font-semibold text-orange-600 uppercase mb-2">
-      Job Role
-    </div>
 
-    <div id="roleList" class="flex flex-col gap-3"></div>
-  </div>
+    <!-- RIGHT SIDEBAR -->
+    <div class="w-full lg:w-60 flex-shrink-0">
 
-  <div class="bg-white rounded-2xl shadow-sm p-4 space-y-2">
+      <!-- GREEN INTERVIEW ROUNDS SECTION -->
+      <div class="bg-gradient-to-b from-blue-50 to-green-100 rounded-2xl shadow-sm p-4">
 
-    <div class="text-sm text-gray-600 cursor-default">
-      ⚙️ Settings
-    </div>
+        <div class="text-xs font-semibold text-blue-600 uppercase mb-2">
+          Interview Rounds
+        </div>
 
-    <div
-      class="text-sm text-gray-600 cursor-pointer hover:text-indigo-600"
-      onclick="document.getElementById('faqSection').scrollIntoView({behavior:'smooth'})">
-      ❓ Help / FAQ
+        <div id="roundList" class="flex flex-col gap-1"></div>
+
+      </div>
+
     </div>
 
   </div>
 
 </div>
 
-<!-- CENTER -->
-<div class="flex-1 space-y-4">
-
-  <div id="questionsPanel" class="bg-white rounded-2xl shadow-sm p-4 min-h-[200px]">
-
-    <div class="text-gray-400 text-sm text-center py-10">
-      Pick a job role and an interview round to see questions.
-    </div>
-
-  </div>
-
-  <div id="answerSection" class="bg-white rounded-2xl shadow-sm p-4 space-y-3 hidden">
-
-    <div id="selectedQuestion" class="heading font-semibold text-gray-800 whitespace-pre-wrap"></div>
-
-    <textarea
-      id="answerInput"
-      rows="4"
-      placeholder="Type your answer here..."
-      class="w-full bg-gray-100 rounded-xl p-3 text-sm focus:outline-none resize-none">
-    </textarea>
-
-    <button
-      onclick="submitAnswer()"
-      class="w-full py-3 rounded-full bg-indigo-600 text-white font-medium text-sm hover:bg-indigo-700 transition">
-      Submit Answer
-    </button>
-
-    <div id="feedbackBox" class="bg-green-50 rounded-xl p-3 hidden"></div>
-
-  </div>
-
-  <div class="bg-white rounded-2xl shadow-sm p-4">
-
-    <div id="scoreBox" class="font-semibold text-sm text-gray-700">
-      Score: 0 correct / 0 attempted
-    </div>
-
-  </div>
-
-  <div id="faqSection" class="bg-white rounded-2xl shadow-sm p-4 space-y-2">
-
-    <h2 class="heading text-lg font-semibold mb-2">
-      Frequently Asked Interview Questions
-    </h2>
-
-    <details class="bg-gray-50 rounded-xl p-3">
-      <summary class="cursor-pointer font-medium text-sm">
-        Tell me about yourself.
-      </summary>
-
-      <p class="text-sm text-gray-600 mt-2">
-        Give a short summary of your education, key skills, and what you're looking for in this role. Keep it under 1 minute.
-      </p>
-    </details>
-
-    <details class="bg-gray-50 rounded-xl p-3">
-      <summary class="cursor-pointer font-medium text-sm">
-        What are your strengths and weaknesses?
-      </summary>
-
-      <p class="text-sm text-gray-600 mt-2">
-        Pick a real strength relevant to the job, and a genuine weakness you're actively improving.
-      </p>
-    </details>
-
-    <details class="bg-gray-50 rounded-xl p-3">
-      <summary class="cursor-pointer font-medium text-sm">
-        Why should we hire you?
-      </summary>
-
-      <p class="text-sm text-gray-600 mt-2">
-        Connect your skills directly to what the role needs. Be specific, not generic.
-      </p>
-    </details>
-
-  </div>
-
-</div>
-
-<!-- RIGHT SIDEBAR -->
-<div class="w-full lg:w-60 flex-shrink-0">
-
-  <div class="bg-gradient-to-b from-blue-50 to-green-100 rounded-2xl shadow-sm p-4">
-
-    <div class="text-xs font-semibold text-blue-600 uppercase mb-2">
-      Interview Rounds
-    </div>
-
-    <div id="roundList" class="flex flex-col gap-1"></div>
-
-  </div>
-
-</div>
-```
-
-  </div>
-</div>
 
 <script>
-
-  // ============================================================
-  // JOB ROLES
-  // ============================================================
 
   const roleCategories = {
 
@@ -225,10 +239,6 @@
   };
 
 
-  // ============================================================
-  // INTERVIEW ROUNDS
-  // ============================================================
-
   const rounds = [
     "Aptitude",
     "Technical",
@@ -238,28 +248,19 @@
   ];
 
 
-  // ============================================================
-  // VARIABLES
-  // ============================================================
-
   let currentRole = null;
   let currentRound = null;
-
   let score = 0;
   let attempted = 0;
-
   let weakAreas = [];
 
-
-  // ============================================================
-  // RENDER SIDEBARS
-  // ============================================================
 
   function renderSidebars() {
 
     const roleList = document.getElementById('roleList');
 
     roleList.innerHTML = "";
+
 
     Object.keys(roleCategories).forEach(category => {
 
@@ -345,27 +346,29 @@
   }
 
 
-  // ============================================================
-  // CALL BACKEND
-  // ============================================================
+  /*
+   * RENDER FIX:
+   * The Groq API key is NO LONGER stored in this frontend.
+   * Requests are sent to the backend /api/ask endpoint.
+   */
 
   async function callAI(prompt) {
 
     try {
 
-      const response = await fetch("/api/ask", ,
-        {
-          method: "POST",
+      const response = await fetch("/api/ask", {
 
-          headers: {
-            "Content-Type": "application/json"
-          },
+        method: "POST",
 
-          body: JSON.stringify({
-            prompt: prompt
-          })
-        }
-      );
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+          prompt: prompt
+        })
+
+      });
 
 
       const data = await response.json();
@@ -373,7 +376,9 @@
 
       if (!response.ok) {
 
-        throw new Error(
+        console.error("API error:", data);
+
+        return "Error: " + (
           data.error || "AI request failed"
         );
 
@@ -382,22 +387,16 @@
 
       return data.answer;
 
-    }
+    } catch (error) {
 
-    catch (error) {
+      console.error("AI connection error:", error);
 
-      console.error("AI Error:", error);
-
-      throw error;
+      return "Error: Unable to connect to the AI server.";
 
     }
 
   }
 
-
-  // ============================================================
-  // CHECK SELECTION
-  // ============================================================
 
   function maybeFetchQuestions() {
 
@@ -410,14 +409,9 @@
   }
 
 
-  // ============================================================
-  // FETCH QUESTIONS
-  // ============================================================
-
   async function fetchQuestions() {
 
-    const panel =
-      document.getElementById('questionsPanel');
+    const panel = document.getElementById('questionsPanel');
 
 
     panel.innerHTML =
@@ -426,9 +420,7 @@
       </div>`;
 
 
-    document
-      .getElementById('answerSection')
-      .classList.add('hidden');
+    document.getElementById('answerSection').classList.add('hidden');
 
 
     let prompt;
@@ -443,6 +435,7 @@ Separate each question with the exact text "@@@" on its own line (nothing else o
 
     }
 
+
     else if (currentRound === "Group Discussion") {
 
       prompt =
@@ -450,12 +443,14 @@ Separate each question with the exact text "@@@" on its own line (nothing else o
 
     }
 
+
     else if (currentRound === "Resume Tips") {
 
       prompt =
         `Give me exactly 10 practical resume tips for a fresher applying for a ${currentRole} role. Separate each tip with the exact text "@@@" on its own line. Do not number them.`;
 
     }
+
 
     else {
 
@@ -465,128 +460,88 @@ Separate each question with the exact text "@@@" on its own line (nothing else o
     }
 
 
-    try {
-
-      const result = await callAI(prompt);
+    const result = await callAI(prompt);
 
 
-      const questions =
-        result
-          .split('@@@')
-          .map(q => q.trim())
-          .filter(q => q.length > 0);
+    const questions =
+      result
+        .split('@@@')
+        .map(q => q.trim())
+        .filter(q => q.length > 0);
 
 
-      panel.innerHTML =
-        `<div class="heading font-semibold mb-3">
-          ${currentRole} — ${currentRound} (${questions.length} questions)
-        </div>`;
+    panel.innerHTML =
+      `<div class="heading font-semibold mb-3">
+        ${currentRole} — ${currentRound} (${questions.length} questions)
+      </div>`;
 
 
-      const list = document.createElement('div');
+    const list = document.createElement('div');
 
-      list.className = "space-y-2";
-
-
-      questions.forEach((q, index) => {
-
-        const item = document.createElement('div');
-
-        item.className =
-          "text-sm p-3 rounded-xl bg-gray-50 hover:bg-indigo-50 cursor-pointer transition whitespace-pre-wrap";
+    list.className = "space-y-2";
 
 
-        item.textContent =
-          (index + 1) + ". " + q;
+    questions.forEach((q, index) => {
+
+      const item = document.createElement('div');
+
+      item.className =
+        "text-sm p-3 rounded-xl bg-gray-50 hover:bg-indigo-50 cursor-pointer transition whitespace-pre-wrap";
 
 
-        item.onclick = () => {
-
-          selectQuestion(
-            (index + 1) + ". " + q
-          );
-
-        };
+      item.textContent =
+        (index + 1) + ". " + q;
 
 
-        list.appendChild(item);
+      item.onclick = () =>
+        selectQuestion((index + 1) + ". " + q);
 
-      });
+
+      list.appendChild(item);
+
+    });
 
 
-      panel.appendChild(list);
-
-    }
-
-    catch (error) {
-
-      panel.innerHTML =
-        `<div class="text-red-500 text-sm text-center py-10">
-          Failed to load questions.<br><br>
-          ${error.message}
-        </div>`;
-
-    }
+    panel.appendChild(list);
 
   }
 
-
-  // ============================================================
-  // SELECT QUESTION
-  // ============================================================
 
   function selectQuestion(question) {
 
-    document.getElementById(
-      'selectedQuestion'
-    ).innerText = question;
+    document.getElementById('selectedQuestion').innerText =
+      question;
 
 
-    document.getElementById(
-      'answerInput'
-    ).value = "";
+    document.getElementById('answerInput').value = "";
 
 
-    document.getElementById(
-      'feedbackBox'
-    ).classList.add('hidden');
+    document.getElementById('feedbackBox').classList.add('hidden');
 
 
-    document.getElementById(
-      'answerSection'
-    ).classList.remove('hidden');
+    document.getElementById('answerSection').classList.remove('hidden');
 
 
-    document.getElementById(
-      'answerSection'
-    ).dataset.question = question;
+    document.getElementById('answerSection').dataset.question =
+      question;
 
 
-    document.getElementById(
-      'answerSection'
-    ).scrollIntoView({
-      behavior: "smooth"
-    });
+    document.getElementById('answerSection')
+      .scrollIntoView({
+        behavior: "smooth"
+      });
 
   }
 
-
-  // ============================================================
-  // SUBMIT ANSWER
-  // ============================================================
 
   async function submitAnswer() {
 
     const question =
-      document.getElementById(
-        'answerSection'
-      ).dataset.question;
+      document.getElementById('answerSection').dataset.question;
 
 
     const answer =
-      document.getElementById(
-        'answerInput'
-      ).value;
+      document.getElementById('answerInput').value;
 
 
     if (!answer.trim()) {
@@ -599,9 +554,7 @@ Separate each question with the exact text "@@@" on its own line (nothing else o
 
 
     const feedbackBox =
-      document.getElementById(
-        'feedbackBox'
-      );
+      document.getElementById('feedbackBox');
 
 
     feedbackBox.classList.remove('hidden');
@@ -623,141 +576,121 @@ CORRECT_ANSWER: give the full correct answer here with clear logical explanation
 IMPROVEMENT: one or two simple sentences on what I personally got right or wrong and how to improve`;
 
 
-    try {
-
-      const feedback =
-        await callAI(prompt);
+    const feedback =
+      await callAI(prompt);
 
 
-      const verdictMatch =
-        feedback.match(
-          /VERDICT:\s*(.*)/i
-        );
+    const verdictMatch =
+      feedback.match(/VERDICT:\s*(.*)/i);
 
 
-      const correctAnswerMatch =
-        feedback.match(
-          /CORRECT_ANSWER:\s*([\s\S]*?)(?=IMPROVEMENT:|$)/i
-        );
+    const correctAnswerMatch =
+      feedback.match(
+        /CORRECT_ANSWER:\s*([\s\S]*?)(?=IMPROVEMENT:|$)/i
+      );
 
 
-      const improvementMatch =
-        feedback.match(
-          /IMPROVEMENT:\s*([\s\S]*)/i
-        );
+    const improvementMatch =
+      feedback.match(/IMPROVEMENT:\s*([\s\S]*)/i);
 
 
-      const verdict =
-        verdictMatch
-          ? verdictMatch[1].trim()
-          : "N/A";
+    const verdict =
+      verdictMatch
+        ? verdictMatch[1].trim()
+        : "N/A";
 
 
-      const correctAnswer =
-        correctAnswerMatch
-          ? correctAnswerMatch[1].trim()
-          : feedback;
+    const correctAnswer =
+      correctAnswerMatch
+        ? correctAnswerMatch[1].trim()
+        : feedback;
 
 
-      const improvement =
-        improvementMatch
-          ? improvementMatch[1].trim()
-          : "";
+    const improvement =
+      improvementMatch
+        ? improvementMatch[1].trim()
+        : "";
 
 
-      const isCorrect =
-        verdict.toUpperCase().startsWith("CORRECT");
+    const isCorrect =
+      verdict.toUpperCase().startsWith("CORRECT");
 
 
-      feedbackBox.innerHTML = `
+    feedbackBox.innerHTML = `
 
-        <div class="space-y-3">
+      <div class="space-y-3">
 
-          <div class="inline-block px-3 py-1 rounded-full text-xs font-semibold ${
+        <div class="inline-block px-3 py-1 rounded-full text-xs font-semibold ${
+          isCorrect
+            ? 'bg-green-100 text-green-700'
+            : 'bg-red-100 text-red-700'
+        }">
+
+          ${
             isCorrect
-              ? 'bg-green-100 text-green-700'
-              : 'bg-red-100 text-red-700'
-          }">
+              ? '✅ Correct'
+              : '❌ Wrong'
+          }
 
-            ${isCorrect ? '✅ Correct' : '❌ Wrong'}
+        </div>
 
+
+        <div>
+
+          <div class="text-xs font-semibold text-gray-500 mb-1">
+            Correct Answer & Explanation
           </div>
 
-
-          <div>
-
-            <div class="text-xs font-semibold text-gray-500 mb-1">
-              Correct Answer & Explanation
-            </div>
-
-            <div class="text-sm text-gray-700 whitespace-pre-wrap">
-              ${correctAnswer}
-            </div>
-
-          </div>
-
-
-          <div>
-
-            <div class="text-xs font-semibold text-gray-500 mb-1">
-              Feedback on Your Answer
-            </div>
-
-            <div class="text-sm text-gray-700">
-              ${improvement}
-            </div>
-
+          <div class="text-sm text-gray-700 whitespace-pre-wrap">
+            ${correctAnswer}
           </div>
 
         </div>
 
-      `;
+
+        <div>
+
+          <div class="text-xs font-semibold text-gray-500 mb-1">
+            Feedback on Your Answer
+          </div>
+
+          <div class="text-sm text-gray-700">
+            ${improvement}
+          </div>
+
+        </div>
+
+      </div>
+
+    `;
 
 
-      attempted++;
+    attempted++;
 
 
-      if (isCorrect) {
+    if (isCorrect) {
 
-        score++;
-
-      }
-
-      else {
-
-        weakAreas.push(currentRound);
-
-      }
-
-
-      document.getElementById(
-        'scoreBox'
-      ).innerText =
-        `Score: ${score} correct / ${attempted} attempted` +
-        (
-          weakAreas.length
-            ? ` | Weak areas: ${[...new Set(weakAreas)].join(", ")}`
-            : ""
-        );
+      score++;
 
     }
 
-    catch (error) {
+    else {
 
-      feedbackBox.innerHTML =
-        `<div class="text-red-600 text-sm">
-          Failed to check your answer.<br><br>
-          ${error.message}
-        </div>`;
+      weakAreas.push(currentRound);
 
     }
+
+
+    document.getElementById('scoreBox').innerText =
+      `Score: ${score} correct / ${attempted} attempted` +
+      (
+        weakAreas.length
+          ? ` | Weak areas: ${[...new Set(weakAreas)].join(", ")}`
+          : ""
+      );
 
   }
 
-
-  // ============================================================
-  // INITIALIZE
-  // ============================================================
 
   renderSidebars();
 

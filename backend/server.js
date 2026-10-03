@@ -9,8 +9,10 @@ app.use(cors());
 app.use(express.json());
 
 // Serve the frontend (index.html)
-app.use(express.static(path.join(__dirname, "..")));
-
+app.use(express.static(path.resolve(__dirname, "..")));
+app.get("/", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "..", "index.html"));
+});
 app.post("/api/ask", async (req, res) => {
     try {
         const { prompt } = req.body;
@@ -44,6 +46,7 @@ app.post("/api/ask", async (req, res) => {
         const data = await response.json();
 
         if (!response.ok) {
+             console.log("GROQ RESPONSE:", data);
             return res.status(response.status).json({
                 error: data.error?.message || "Groq API error"
             });
